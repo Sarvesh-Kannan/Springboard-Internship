@@ -1,0 +1,24 @@
+{
+    "vehicle_name": "Audi A3 Saloon 1.5 TFSI 150 Sport 4dr",
+    "monthly_payment": "249.61",
+    "down_payment": "2,995.32",
+    "lease_term_months": "48",
+    "annual_mileage": "5000",
+    "excess_mileage_clause": "Present",
+    "maintenance_included": "No",
+    "total_lease_cost": "14,975.99",
+    "fuel_type": "Petrol",
+    "transmission": "Manual",
+    "co2_emissions": "125 g/km",
+    "p11d_value": "31,335.00",
+    "not_available_in_document": [
+        "VIN number",
+        "APR / Interest rate",
+        "Residual value",
+        "Purchase option / Buyout price",
+        "Early termination penalties",
+        "Late payment fees",
+        "Warranty details",
+        "Insurance coverage"
+    ]
+}

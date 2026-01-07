@@ -1,0 +1,24 @@
+{
+    "vehicle_name": "Volkswagen ID.3 Hatchback 125kW Match Pure 52kWh 5dr Auto",
+    "monthly_payment": "210.87",
+    "down_payment": "2,530.44",
+    "lease_term_months": "48",
+    "annual_mileage": "Not Available",
+    "excess_mileage_clause": "Present",
+    "maintenance_included": "No",
+    "total_lease_cost": "12,690.33",
+    "fuel_type": "Electric",
+    "transmission": "Automatic",
+    "co2_emissions": "0 g/km",
+    "p11d_value": "32,155.00",
+    "not_available_in_document": [
+        "VIN number",
+        "APR / Interest rate",
+        "Residual value",
+        "Purchase option / Buyout price",
+        "Early termination penalties",
+        "Late payment fees",
+        "Warranty details",
+        "Insurance coverage"
+    ]
+}

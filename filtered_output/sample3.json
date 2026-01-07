@@ -1,0 +1,24 @@
+{
+    "vehicle_name": "SEAT Arona SUV 1.0 TSI 115 FR First Edition 5dr DSG",
+    "monthly_payment": "205.64",
+    "down_payment": "2,467.68",
+    "lease_term_months": "48",
+    "annual_mileage": "5000",
+    "excess_mileage_clause": "Present",
+    "maintenance_included": "No",
+    "total_lease_cost": "12,381.76",
+    "fuel_type": "Petrol",
+    "transmission": "Automatic",
+    "co2_emissions": "127 g/km",
+    "p11d_value": "27,920.00",
+    "not_available_in_document": [
+        "VIN number",
+        "APR / Interest rate",
+        "Residual value",
+        "Purchase option / Buyout price",
+        "Early termination penalties",
+        "Late payment fees",
+        "Warranty details",
+        "Insurance coverage"
+    ]
+}

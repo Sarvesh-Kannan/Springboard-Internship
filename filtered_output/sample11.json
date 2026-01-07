@@ -1,0 +1,24 @@
+{
+    "vehicle_name": "Renault Captur SUV 1.2 TCE 115 Evolution 5dr",
+    "monthly_payment": "190.70",
+    "down_payment": "2,288.40",
+    "lease_term_months": "48",
+    "annual_mileage": "5000",
+    "excess_mileage_clause": "Present",
+    "maintenance_included": "No",
+    "total_lease_cost": "11,500.30",
+    "fuel_type": "Petrol",
+    "transmission": "Manual",
+    "co2_emissions": "130 g/km",
+    "p11d_value": "22,000.00",
+    "not_available_in_document": [
+        "VIN number",
+        "APR / Interest rate",
+        "Residual value",
+        "Purchase option / Buyout price",
+        "Early termination penalties",
+        "Late payment fees",
+        "Warranty details",
+        "Insurance coverage"
+    ]
+}

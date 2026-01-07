@@ -1,0 +1,24 @@
+{
+    "vehicle_name": "Volkswagen T-Cross SUV 1.0 TSI Match 5dr",
+    "monthly_payment": "213.87",
+    "down_payment": "2,566.44",
+    "lease_term_months": "48",
+    "annual_mileage": "Not Available",
+    "excess_mileage_clause": "Present",
+    "maintenance_included": "No",
+    "total_lease_cost": "12,867.33",
+    "fuel_type": "Petrol",
+    "transmission": "Manual",
+    "co2_emissions": "127 g/km",
+    "p11d_value": "25,765.00",
+    "not_available_in_document": [
+        "VIN number",
+        "APR / Interest rate",
+        "Residual value",
+        "Purchase option / Buyout price",
+        "Early termination penalties",
+        "Late payment fees",
+        "Warranty details",
+        "Insurance coverage"
+    ]
+}

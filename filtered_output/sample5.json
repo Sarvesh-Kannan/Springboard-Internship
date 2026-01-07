@@ -1,0 +1,24 @@
+{
+    "vehicle_name": "Volkswagen Golf Hatchback 1.5 TSI Match 5dr",
+    "monthly_payment": "209.30",
+    "down_payment": "2,511.60",
+    "lease_term_months": "24",
+    "annual_mileage": "Not Available",
+    "excess_mileage_clause": "Present",
+    "maintenance_included": "No",
+    "total_lease_cost": "7,574.50",
+    "fuel_type": "Petrol",
+    "transmission": "Manual",
+    "co2_emissions": "122 g/km",
+    "p11d_value": "28,640.00",
+    "not_available_in_document": [
+        "VIN number",
+        "APR / Interest rate",
+        "Residual value",
+        "Purchase option / Buyout price",
+        "Early termination penalties",
+        "Late payment fees",
+        "Warranty details",
+        "Insurance coverage"
+    ]
+}
