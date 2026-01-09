@@ -1,0 +1,70 @@
+{
+    "1. Vehicle Consultancy / Dealer Info": {
+        "Vehicle Consultancy Name": "Vehicle Consultancy",
+        "Contact Details": "48 48 18",
+        "Dealer / Lessor Name": "Information not available",
+        "Location": "73 Castlehill Road, Belfast, BT4 3GP"
+    },
+    "2. Vehicle Identification & Basic Details": {
+        "Car Name / Model": "Volkswagen ID.3 Hatchback",
+        "Variant": "125kW Match Pure 52kWh 5dr Auto",
+        "Vehicle Identification Number (VIN)": "Information not available",
+        "Registered Number": "Information not available",
+        "VAT Number": "Information not available",
+        "Manufacturer": "Volkswagen",
+        "Manufacturer OTR": "\u00a332,220.00",
+        "P11D (Official List Price)": "\u00a332,155.00"
+    },
+    "3. Vehicle Specifications": {
+        "Body Type": "Hatchback",
+        "Car Color": "Information not available",
+        "Fuel Type (Petrol / Diesel / Electric / Hybrid)": "Electric",
+        "Transmission (Manual / Automatic)": "Automatic",
+        "CO\u2082 Emissions": "0 g/km",
+        "Vehicle Depreciation Rate per Month": "Information not available",
+        "Mileage and Tenure Limit": "48 month term, annual mileage allowance not specified"
+    },
+    "4. Lease Terms / Agreement Details": {
+        "Agreement Duration / Term Period": "48 month term",
+        "Rental Period (Start / End Dates)": "Information not available",
+        "Expiry Date": "31-03-2026 (Advert expiry date)",
+        "Termination Date": "Information not available",
+        "Early Termination Fee": "Information not available",
+        "Mileage Allowance": "Information not available (specific annual mileage missing)",
+        "Maintenance Responsibility": "Lessee responsible (Does not include maintenance)",
+        "Insurance Management Requirements": "Information not available",
+        "Other Terms and Conditions / Disclaimer": "All pricing is subject to change at any time. This pricing summary schedule is for guidance only. Figures and taxes displayed do not form the basis of any quotation or contract. E & OE."
+    },
+    "5. Payment Details": {
+        "5.1 Upfront / Signing Payments": {
+            "Lease Signing Payment / Amount Due at Lease Signing or Delivery": "\u00a32,530.44 + VAT (Initial rental)",
+            "Capitalized Cost Reduction": "Information not available",
+            "Net Trade-In Allowance": "Information not available",
+            "Down Payment": "Information not available",
+            "First Monthly Payment": "Information not available",
+            "Refundable Security eposit": "Information not available",
+            "Amount to be Paid in Cash": "Information not available",
+            "Title Fees": "Information not available",
+            "Registration Fees": "Information not available",
+            "Processing Fee": "\u00a3249.00 + VAT"
+        },
+        "5.2 Recurring Payments": {
+            "Monthly Payments / Fixed Monthly Rent": "\u00a3210.87 + VAT per month",
+            "Monthly Sales / Use Tax": "Information not available",
+            "Other Charges (not part of monthly payment)": "Potential excess mileage charge",
+            "Total Monthly Payment (per annum or per month)": "\u00a3210.87 + VAT per month",
+            "Total of Payments (over entire lease)": "\u00a312,690.33 + VAT",
+            "Amortized Amount over the Period of Lease": "Information not available"
+        }
+    },
+    "6. Taxes & Additional Fees": {
+        "VAT / Sales Tax": "Applied to Initial Rental, Monthly Rent, Processing Fee, and Total Cost.",
+        "Other Fees and Taxes": "Processing fee (\u00a3249.00 + VAT)"
+    },
+    "7. Residual & End-of-Lease Details": {
+        "Residual Value": "Information not available",
+        "Vehicle Depreciation Considered": "Information not available",
+        "Options at Lease End (return / buy / renew)": "Information not available (Business contract hire implied return)"
+    },
+    "car_name": "Volkswagen ID.3 Hatchback 125kW Match Pure 52kWh 5dr Auto"
+}

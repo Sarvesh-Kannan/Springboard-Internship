@@ -1,0 +1,70 @@
+{
+    "Vehicle Consultancy / Dealer Info": {
+        "Vehicle Consultancy Name": "Vehicle Consultancy",
+        "Contact Details": "48 48 18",
+        "Dealer / Lessor Name": "Information not available",
+        "Location": "73 Castlehill Road, Belfast, BT4 3GP"
+    },
+    "Vehicle Identification & Basic Details": {
+        "Car Name / Model": "Audi A3 Saloon",
+        "Variant": "1.5 TFSI 150 Sport 4dr",
+        "Vehicle Identification Number (VIN)": "Information not available",
+        "Registered Number": "Information not available",
+        "VAT Number": "Information not available",
+        "Manufacturer": "Audi",
+        "Manufacturer OTR": "\u00a331,830.00",
+        "P11D (Official List Price)": "\u00a331,335.00"
+    },
+    "Vehicle Specifications": {
+        "Body Type": "Saloon",
+        "Car Color": "Information not available",
+        "Fuel Type (Petrol / Diesel / Electric / Hybrid)": "Petrol",
+        "Transmission (Manual / Automatic)": "Manual",
+        "CO\u2082 Emissions": "125 g/km",
+        "Vehicle Depreciation Rate per Month": "Information not available",
+        "Mileage and Tenure Limit": "5000 miles annual allowance over 48 months"
+    },
+    "Lease Terms / Agreement Details": {
+        "Agreement Duration / Term Period": "48 month term",
+        "Rental Period (Start / End Dates)": "Information not available",
+        "Expiry Date": "31-12-2025 (Advert expiry date)",
+        "Termination Date": "Information not available",
+        "Early Termination Fee": "Information not available",
+        "Mileage Allowance": "5000 miles (annual)",
+        "Maintenance Responsibility": "Does not include maintenance (Lessee/Driver responsibility)",
+        "Insurance Management Requirements": "Information not available",
+        "Other Terms and Conditions / Disclaimer": "All pricing is subject to change at any time. This pricing summary schedule is for guidance only. Figures and taxes displayed do not form the basis of any quotation or contract. E & OE. Excess mileage charge may apply."
+    },
+    "Payment Details": {
+        "Upfront / Signing Payments": {
+            "Lease Signing Payment / Amount Due at Lease Signing or Delivery": "Initial rental \u00a32,995.32 + VAT",
+            "Capitalized Cost Reduction": "Information not available",
+            "Net Trade-In Allowance": "Information not available",
+            "Down Payment": "Information not available",
+            "First Monthly Payment": "Information not available",
+            "Refundable Security eposit": "Information not available",
+            "Amount to be Paid in Cash": "Information not available",
+            "Title Fees": "Information not available",
+            "Registration Fees": "Information not available",
+            "Processing Fee": "\u00a3249.00 + VAT"
+        },
+        "Recurring Payments": {
+            "Monthly Payments / Fixed Monthly Rent": "\u00a3249.61 + VAT per month",
+            "Monthly Sales / Use Tax": "Information not available",
+            "Other Charges (not part of monthly payment)": "Information not available",
+            "Total Monthly Payment (per annum or per month)": "\u00a3249.61 + VAT per month",
+            "Total of Payments (over entire lease)": "\u00a314,975.99 + VAT",
+            "Amortized Amount over the Period of Lease": "Information not available"
+        }
+    },
+    "Taxes & Additional Fees": {
+        "VAT / Sales Tax": "VAT applies to all payments (Initial rental, monthly rent, processing fee, total lease cost).",
+        "Other Fees and Taxes": "Excess mileage charge (if applicable)"
+    },
+    "Residual & End-of-Lease Details": {
+        "Residual Value": "Information not available",
+        "Vehicle Depreciation Considered": "Information not available",
+        "Options at Lease End (return / buy / renew)": "Information not available (Type is Business Contract Hire, implying return)"
+    },
+    "car_name": "Audi A3 Saloon 1.5 TFSI 150 Sport 4dr"
+}
