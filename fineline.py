@@ -13,37 +13,139 @@ if not api_key:
 
 client = genai.Client(api_key=api_key)
 
-INPUT_FOLDER = "extracted_text"
-OUTPUT_FOLDER = "fineline_output"
-os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
 # ------------------------
 # SAFE JSON PARSER
 # ------------------------
 def safe_json_parse(llm_output: str) -> dict:
-    """
-    Try to parse JSON from LLM output.
-    If invalid, extract the first {...} block using regex.
-    """
+    import json, re
+
+    match = re.search(r"\{[\s\S]*\}", llm_output)
+    if not match:
+        raise ValueError("No JSON object found in LLM output")
+
+    json_text = match.group()
+
     try:
-        return json.loads(llm_output)
-    except json.JSONDecodeError:
-        # Extract first JSON object from text
-        match = re.search(r"\{.*\}", llm_output, re.DOTALL)
-        if match:
-            try:
-                return json.loads(match.group())
-            except json.JSONDecodeError:
-                return {}
-        return {}
+        return json.loads(json_text)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON from LLM: {e}")
+
+
+CANONICAL_SCHEMA = {
+    "1. Vehicle Consultancy / Dealer Info": {
+        "Vehicle Consultancy Name": "Information not available",
+        "Contact Details": "Information not available",
+        "Dealer / Lessor Name": "Information not available",
+        "Location": "Information not available"
+    },
+    "2. Vehicle Identification & Basic Details": {
+        "Car Name / Model": "Information not available",
+        "Variant": "Information not available",
+        "Vehicle Identification Number (VIN)": "Information not available",
+        "Registered Number": "Information not available",
+        "VAT Number": "Information not available",
+        "Manufacturer": "Information not available",
+        "Manufacturer OTR": "Information not available",
+        "P11D (Official List Price)": "Information not available"
+    },
+    "3. Vehicle Specifications": {
+        "Body Type": "Information not available",
+        "Car Color": "Information not available",
+        "Fuel Type (Petrol / Diesel / Electric / Hybrid)": "Information not available",
+        "Transmission (Manual / Automatic)": "Information not available",
+        "CO₂ Emissions": "Information not available",
+        "Vehicle Depreciation Rate per Month": "Information not available",
+        "Mileage and Tenure Limit": "Information not available"
+    },
+    "4. Lease Terms / Agreement Details": {
+        "Agreement Duration / Term Period": "Information not available",
+        "Rental Period (Start / End Dates)": "Information not available",
+        "Expiry Date": "Information not available",
+        "Termination Date": "Information not available",
+        "Early Termination Fee": "Information not available",
+        "Mileage Allowance": "Information not available",
+        "Maintenance Responsibility": "Information not available",
+        "Insurance Management Requirements": "Information not available",
+        "Other Terms and Conditions / Disclaimer": "Information not available"
+    },
+    "5. Payment Details": {
+        "5.1 Upfront / Signing Payments": {
+            "Lease Signing Payment / Amount Due at Lease Signing or Delivery": "Information not available",
+            "Capitalized Cost Reduction": "Information not available",
+            "Net Trade-In Allowance": "Information not available",
+            "Down Payment": "Information not available",
+            "First Monthly Payment": "Information not available",
+            "Refundable Security eposit": "Information not available",
+            "Amount to be Paid in Cash": "Information not available",
+            "Title Fees": "Information not available",
+            "Registration Fees": "Information not available",
+            "Processing Fee": "Information not available"
+        },
+        "5.2 Recurring Payments": {
+            "Monthly Payments / Fixed Monthly Rent": "Information not available",
+            "Monthly Sales / Use Tax": "Information not available",
+            "Other Charges (not part of monthly payment)": "Information not available",
+            "Total Monthly Payment (per annum or per month)": "Information not available",
+            "Total of Payments (over entire lease)": "Information not available",
+            "Amortized Amount over the Period of Lease": "Information not available"
+        }
+    },
+    "6. Taxes & Additional Fees": {
+        "VAT / Sales Tax": "Information not available",
+        "Other Fees and Taxes": "Information not available"
+    },
+    "7. Residual & End-of-Lease Details": {
+        "Residual Value": "Information not available",
+        "Vehicle Depreciation Considered": "Information not available",
+        "Options at Lease End (return / buy / renew)": "Information not available"
+    }
+}
+# -------------------------
+#Normalizer
+#------------------------
+
+def normalize_llm_output(llm_data: dict, raw_text: str) -> dict:
+    """
+    Forces LLM output into the canonical 7-section schema.
+    Never fails.
+    """
+
+    result = json.loads(json.dumps(CANONICAL_SCHEMA))  # deep copy
+
+    if not isinstance(llm_data, dict):
+        return result
+
+    for section, fields in result.items():
+        if section not in llm_data or not isinstance(llm_data.get(section), dict):
+            continue
+
+        for key in fields:
+            value = llm_data[section].get(key)
+            if isinstance(value, str) and value.strip():
+                result[section][key] = value
+
+    # 🚑 Fallback car name if missing
+    if result["2. Vehicle Identification & Basic Details"]["Car Name / Model"] == "Information not available":
+        result["2. Vehicle Identification & Basic Details"]["Car Name / Model"] = extract_vehicle_name(raw_text)
+
+    return result
+
+
 
 # ------------------------
 # LLM EXTRACTION
 # ------------------------
-def llm_extract_contract(text):
+def llm_extract_contract(response_text):
     prompt = f"""
-You are an expert in analyzing vehicle lease contracts.
+You are an expert in analyzing vehicle lease contracts and a data extraction system.
 
+Return ONLY valid JSON.
+No explanations.
+No markdown.
+No extra text.
+
+Use EXACTLY this JSON structure:
 Extract the following fields.
 If missing, return "Information not available".
 
@@ -117,13 +219,14 @@ Vehicle Depreciation Considered
 Options at Lease End (return / buy / renew)
 
 TEXT:
-{text[:3000]}
+{response_text[:8000]}
 """
     try:
         response = client.models.generate_content(
             model="gemini-flash-latest",  # Change to a working model if needed
             contents=prompt
         )
+        print("RAW LLM OUTPUT:\n", response.text) 
         return safe_json_parse(response.text)
     except Exception as e:
         print(f"Error calling LLM: {e}")
@@ -150,32 +253,20 @@ def extract_vehicle_name(text):
     return "Information not available"
 
 # ------------------------
-# PROCESS FILES
+# PROCESS FILES USING FUNCTION
 # ------------------------
-for file in os.listdir(INPUT_FOLDER):
-    if not file.endswith(".txt"):
-        continue
 
-    print(f"Processing: {file}")
-
-    with open(os.path.join(INPUT_FOLDER, file), "r", encoding="utf-8") as f:
-        raw_text = f.read()
-
-    # Remove obvious noise: long numbers, emails
+def process_text(raw_text: str) -> dict:
+    # Clean noise
     cleaned_text = re.sub(r"\b\d{5,}\b", "", raw_text)
     cleaned_text = re.sub(r"\S+@\S+", "", cleaned_text)
 
-    data = llm_extract_contract(cleaned_text)
+    # Call LLM
+    try:
+        llm_data = llm_extract_contract(cleaned_text)
+    except Exception as e:
+        return normalize_llm_output({}, raw_text)
 
-    # Fallback vehicle name if missing
-    if not data or data.get("car_name", "").strip().lower() in ["", "information not available"]:
-        data["car_name"] = extract_vehicle_name(raw_text)
+    # Normalize ALWAYS
+    return normalize_llm_output(llm_data, raw_text)
 
-    output_path = os.path.join(
-        OUTPUT_FOLDER, file.replace(".txt", ".json")
-    )
-
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
-
-print("\n✅ All contracts processed successfully!")
