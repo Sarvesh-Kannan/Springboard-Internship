@@ -205,4 +205,3 @@ Sarvesh Kannan
 - The `.gitignore` file is included to prevent committing virtual environments and other unnecessary files
 - Always use a virtual environment for Python projects
 - Keep your API keys secure and never commit them to the repository
-
