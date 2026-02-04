@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lease Intelligence</title>
+<link rel="icon" type="image/png" href="/Static/Pink_logo.png">
+<style>
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0px;
+  font-family: Inter, system-ui, sans-serif;
+  background: radial-gradient(circle at top, #000000, #200b18, #765767);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+.navbar {
+   position: fixed;   /* important */
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(0);
+  transition: transform 0.7s ease-in-out;
+  position: sticky;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 40px;
+  background:radial-gradient(circle at top, #550231, #230317);
+  backdrop-filter: blur(12px);
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #d4fff7;
+  font-weight: 500;
+  padding: 6px 20px;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-item.active {
+  background: linear-gradient(90deg, #fd86c8, #fb1597);
+  color: #021f1a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("fonts/Athelas.ttc") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.header h1 {
+  font-size: 80px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #ffffff, #f546a9,#940958);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color:#ffeff8;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.card {
+  background-color: rgb(245, 179, 215);
+  border: 0px solid var(--border);
+  border-radius: 18px;
+  padding: 40px;
+  box-shadow: 0 30px 80px rgba(45, 48, 49, 0.6);
+}
+
+.loader p {
+  color:#ffffff;
+  font-weight: 600;
+}
+
+/* Upload */
+.upload {
+  border: 2.3px dashed #ffc2e1;
+  padding: 60px 30px;
+  text-align: center;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.upload:hover {
+  background-color: rgb(253, 203, 230);
+  transform: translateY(-2px);
+}
+
+.upload h2 {
+  margin-bottom: 8px;
+  color:#fb1597;
+  font-size: 28px;
+}
+
+.upload p {
+  color:#170912;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+input[type=file] {
+  display: none;
+}
+
+.btn {
+  background: linear-gradient(135deg, #fb1597, #fd86c8);
+  color: white;
+  border: none;
+  padding: 14px 34px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* Loader */
+.loader {
+  display: none;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #fb1597;
+  border-top-color:#000000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Results */
+.results {
+  display: none;
+  margin-top: 40px;
+}
+
+.section {
+  background-color: rgb(35, 16, 26);
+  border: 0px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.section h3 {
+  color:#ff1d9d;
+  margin-bottom: 15px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  padding: 8px 0;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  color:#ff1d9d;
+  font-weight:500;
+  font-size: 15px;
+}
+
+.value {
+  color:#ffffff;
+  font-weight:500;
+  font-size: 15px;
+}
+
+/* Error */
+.error {
+  display: none;
+  background: #3f1d2b;
+  color: #fda4d6;
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.vin-section {
+  margin-top: 40px;
+}
+
+.vin-input-box {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.vin-input-box input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.vin-input-box button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #fb1597, #fd86c8);
+  color: white;
+  cursor: pointer;
+}
+
+.vin-result .card {
+  background: #1c0b14;
+  color:#fb1597;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+
+.error {
+  color: #ff6b93;
+}
+
+
+</style>
+</head>
+
+<body>
+
+  <header class="navbar">
+  <div class="nav-left">
+    <a href="#about" class="nav-item">About Us</a>
+    <a href="#analyse" class="nav-item">Analyse</a>
+    <a href="#vinlookup" class="nav-item active">VIN Lookup</a>
+  </div>
+
+  <div class="nav-right">
+    <a href="#blogs" class="nav-item">Blogs</a>
+    <a href="#contact" class="nav-item">Contact Us</a>
+  </div>
+</header>
+
+
+<div class="container">
+
+  <div class="header">
+    <br><br>
+    <h1>Car Lease Intelligence</h1>
+    <p>AI-powered car lease contract analysis</p>
+  </div>
+
+  <div class="card">
+
+    <div class="upload" id="dropZone">
+      <h2>Upload Lease PDF</h2>
+      <p>Drag & drop or click to select</p>
+      <button class="btn" onclick="fileInput.click()">Select File</button>
+      <input type="file" id="fileInput" accept=".pdf">
+    </div>
+
+    <section class="vin-section">
+  <h2>VIN Lookup</h2>
+
+  <div class="vin-input-box">
+    <input 
+      type="text" 
+      id="vinInput" 
+      placeholder="Enter 17-character VIN"
+      maxlength="17"
+    />
+    <button onclick="lookupVIN()">Analyse VIN</button>
+  </div>
+
+  <div id="vinResult" class="vin-result"></div>
+   </section>
+
+
+    <div class="loader" id="loader">
+      <div class="spinner"></div>
+      <p>Analyzing contract with AI…</p>
+    </div>
+
+    <div class="error" id="error"></div>
+
+    <div class="results" id="results"></div>
+
+  </div>
+</div>
+
+<script>
+
+   let lastScrollY = window.scrollY;
+  const navbar = document.querySelector(".navbar");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > lastScrollY && window.scrollY > 60) {
+      // scrolling down
+      navbar.style.transform = "translateY(-100%)";
+    } else {
+      // scrolling up
+      navbar.style.transform = "translateY(0)";
+    }
+    lastScrollY = window.scrollY;
+  });
+
+
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const loader = document.getElementById("loader");
+const results = document.getElementById("results");
+const error = document.getElementById("error");
+
+/* Click handling */
+dropZone.onclick = () => fileInput.click();
+
+fileInput.onchange = () => {
+  if (fileInput.files.length > 0) {
+    uploadFile(fileInput.files[0]);
+  }
+};
+
+/* Upload + API call */
+async function uploadFile(file) {
+  loader.style.display = "block";
+  results.style.display = "none";
+  error.style.display = "none";
+
+  const form = new FormData();
+  form.append("file", file);
+
+  try {
+    const res = await fetch("/lease/extract", {
+      method: "POST",
+      body: form
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      const message =
+        data?.detail?.error ||
+        data?.detail?.details ||
+        "Failed to process PDF";
+      throw new Error(message);
+    }
+
+    renderResults(data.lease_details);
+
+  } catch (e) {
+    error.innerText = e.message;
+    error.style.display = "block";
+  } finally {
+    loader.style.display = "none";
+  }
+}
+
+/* Render extracted JSON */
+function renderResults(data) {
+  let html = "";
+
+  for (const section in data) {
+    html += `<div class="section"><h3>${section}</h3>`;
+    const fields = data[section];
+
+    for (const key in fields) {
+      const value = fields[key];
+
+      if (typeof value === "object" && value !== null) {
+        html += `
+          <div class="row">
+            <div class="label">${key}</div>
+            <div></div>
+          </div>
+        `;
+        for (const subKey in value) {
+          html += `
+            <div class="row">
+              <div class="label">↳ ${subKey}</div>
+              <div class="value">${value[subKey]}</div>
+            </div>
+          `;
+        }
+      } else {
+        html += `
+          <div class="row">
+            <div class="label">${key}</div>
+            <div class="value">${value}</div>
+          </div>
+        `;
+      }
+    }
+    html += `</div>`;
+  }
+
+  results.innerHTML = html;
+  results.style.display = "block";
+}
+
+
+async function lookupVIN() {
+  const vin = document.getElementById("vinInput").value.trim();
+  const resultDiv = document.getElementById("vinResult");
+
+  if (vin.length !== 17) {
+    resultDiv.innerHTML = "<p class='error'>VIN must be 17 characters</p>";
+    return;
+  }
+
+  resultDiv.innerHTML = "<p>Fetching VIN details...</p>";
+
+  try {
+    const response = await fetch(`/vin/lookup/${vin}`);
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.detail || "VIN lookup failed");
+    }
+
+    renderVINResult(data);
+
+  } catch (error) {
+    resultDiv.innerHTML = `<p class="error">${error.message}</p>`;
+  }
+}
+
+function renderVINResult(data) {
+  const resultDiv = document.getElementById("vinResult");
+
+  let html = `<div class="card">
+    <h3>Vehicle Details</h3>
+    <ul>`;
+
+  for (const [key, value] of Object.entries(data)) {
+    html += `<li><strong>${key}:</strong> ${value}</li>`;
+  }
+
+  html += `</ul></div>`;
+
+  resultDiv.innerHTML = html;
+}
+
+
+</script>
+</body>
+</html>

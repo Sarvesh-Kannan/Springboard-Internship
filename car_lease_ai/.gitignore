@@ -1,0 +1,36 @@
+# Python / project
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# env / secrets
+.env
+.env.* 
+secrets/
+*.key
+
+# IDEs / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Build / caches
+dist/
+build/
+*.egg-info/
+
+# files to ignore
+contract_format_detailed.py
+contract_format_detailed.txt
+filter_contract.py
+test.py
+
+# folders to ignore
+contract_format_inputs/
+filtered_output/
+
+uploads/
+uploads/
+uploads/
