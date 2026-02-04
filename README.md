@@ -7,7 +7,7 @@ An intelligent, cross-platform mobile application that empowers consumers to und
 ![Flutter](https://img.shields.io/badge/flutter-3.x-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)
 
-## 🌟 Key Features
+## Key Features
 
 - **Automated Contract Analysis**: Extract 50+ parameters from lease contracts using Google Gemini LLM
 - **Fairness Scoring**: Transparent 5-dimension scoring system (0-100 points) with color-coded visualization
@@ -17,7 +17,7 @@ An intelligent, cross-platform mobile application that empowers consumers to und
 - **Secure Authentication**: JWT-based user authentication with bcrypt password hashing
 - **Cross-Platform**: Flutter-based mobile app for iOS, Android, and Web
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Architecture Overview](#architecture-overview)
 - [Tech Stack](#tech-stack)
@@ -30,7 +30,7 @@ An intelligent, cross-platform mobile application that empowers consumers to und
 - [Testing](#testing)
 - [Deployment](#deployment)
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 The system consists of two main components:
 
@@ -75,7 +75,7 @@ The system consists of two main components:
 - **HTTP Client**: http package
 - **Secure Storage**: flutter_secure_storage
 
-## 📦 Prerequisites
+## Prerequisites
 
 ### Backend Requirements
 - Python 3.11 or higher
@@ -95,7 +95,7 @@ The system consists of two main components:
 - RAM: 8GB minimum, 16GB recommended
 - Disk Space: 10GB free space
 
-## 🚀 Installation
+## Installation
 
 ### Backend Setup
 
@@ -235,7 +235,7 @@ dependencies:
   intl: ^0.18.1
 ```
 
-## 🏃 Running the Application
+## Running the Application
 
 ### Start the Backend Server
 
@@ -285,7 +285,7 @@ flutter build ios --release
 flutter build web --release
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 Once the backend is running, access the interactive API documentation:
 
@@ -374,7 +374,7 @@ CAR_LEASE_INTELLIGENCE_APP/
 └── README.md
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Backend Testing
 
@@ -403,7 +403,7 @@ cd car_lease_intelligence_app
 flutter test
 ```
 
-## 🚢 Deployment
+## Deployment
 
 ### Backend Deployment (Docker)
 
@@ -463,7 +463,7 @@ flutter build web --release
 
 This project is licensed under the MIT License.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Google Gemini API for LLM capabilities
 - NHTSA vPIC API for vehicle data
@@ -472,4 +472,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**Built with ❤️ using AI and modern technologies**
+**Built using AI and modern technologies**
