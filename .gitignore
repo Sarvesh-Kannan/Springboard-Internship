@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# API keys / secrets
+.env
+*.env
+
+# Mac files
+.DS_Store
+
+# Output folders (optional)
+filtered_output/
+extracted_text/
+
+# Raw inputs
+contracts/
+extracted_text/
+
+# Virtual environment
+venv/
+
+# OS / editor junk
+.DS_Store
+.vscode/
